@@ -1,0 +1,327 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{tabularx}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{pdftitle={OEIS A209723: Barker's conjectures on distinct clockwise edge differences},
+pdfauthor={Haobo Ma and Wenlin Zhang},pdfsubject={CC BY 4.0; exact enumeration of ternary arrays}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\title{OEIS A209723: Barker's conjectures on\texorpdfstring{\\}{ }distinct clockwise edge differences}
+\author{Haobo Ma\\{\small ChronoAI Pte Ltd, Singapore}\and
+Wenlin Zhang\\{\small National University of Singapore}\\{\small ChronoAI Pte Ltd, Singapore}}
+\date{November 2, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We prove the ``Conjectures'' of Colin Barker in the FORMULA section of
+OEIS A209723, dated July 12, 2018: the parity formulas and ordinary generating
+function for ternary arrays with distinct clockwise edge differences
+\cite{a209723}. We also prove Hardin's empirical recurrence. A decomposition
+of the row-compatibility graph into two three-vertex stars and isolated edges
+gives a formula for every rectangular size. Its corollaries include the
+companion formulas in A209721--A209726, Beck's first A209721 conjecture,
+Peterson's A209721 recurrence and triangle interpretation, and the column
+recurrences and diagonal identification in A209727.
+\end{abstract}
+
+\section{The enumeration problem}
+OEIS A209723 asks for the normalized count of five-column ternary arrays
+with distinct signed clockwise edge differences; Barker's July 12, 2018
+FORMULA conjectures give its parity formulas and generating function
+\cite{a209723}. We prove them by counting all rectangular sizes at once.
+Let $n,k\geq1$. Write $N(n,k)$ for the number of labelled
+$(n+1)\times(k+1)$ arrays with entries in $\{0,1,2\}$ such that every consecutive
+subblock $\left[\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right]$ has four
+pairwise distinct signed integer differences
+\[
+ b-a,\qquad d-b,\qquad c-d,\qquad a-c.
+\]
+Set $T(n,k)=N(n,k)/4$, using Hardin's normalization in
+A209727 \cite{a209727}. No quotient by rotations or relabellings is taken.
+In particular, A209723 is $a(n)=T(n,4)$, beginning $6,7,8,10,12,16$.
+
+For $m\geq0$, define
+\begin{equation}\label{eq:b}
+ b(2m+1)=2^{m+1},\qquad b(2m+2)=3\cdot2^m.
+\end{equation}
+Thus $b(n)$ is A029744 at index $n+1$ \cite{a029744}.
+\begin{theorem}\label{thm:main}
+For all $n,k\geq1$,
+\begin{equation}\label{eq:main}
+ T(n,k)=b(n)+b(k)-2.
+\end{equation}
+Consequently,
+\begin{equation}\label{eq:target}
+ a(2m+1)=2^{m+1}+4,\qquad a(2m+2)=3\cdot2^m+4\quad(m\geq0),
+\end{equation}
+and $\sum_{n\geq1}a(n)x^n=x(6+x-11x^2)/((1-x)(1-2x^2))$.
+\end{theorem}
+
+The source calls the recurrence ``Empirical'' and attributes the generating
+function and parity formulas to Barker as conjectures \cite{a209723}.
+For the four-column case A209722, Andrew's 2024 Math Stack Exchange answer
+already gives a tile-based proof outline \cite{andrew}.
+Here the graph decomposition yields a complete proof for all widths at once.
+The underlying correspondence between arrays and walks is the usual
+transfer-matrix method; see Stanley \cite[Section 4.7]{stanley}.
+We give the required counting argument directly.
+
+\section{Two stars and isolated edges}
+For a fixed $k$, let $H_k$ have the words in $\{0,1,2\}^{k+1}$ as vertices.
+Two words $s,t$ are adjacent precisely when using them as consecutive rows
+gives valid subblocks in all $k$ positions. Reversing the two rows permutes
+and negates the differences, so this relation is symmetric. Loops are
+impossible: a repeated row would give two zero vertical differences.
+An array counted by $N(n,k)$ is uniquely a walk of length $n$ in $H_k$,
+with a specified starting vertex. Walks may revisit vertices and edges.
+
+For a subblock, the differences lie in $\{-2,-1,0,1,2\}$ and sum to zero.
+If four are distinct, their omitted fifth value must therefore be zero.
+Both a $+2$ and a $-2$ edge occur. These cannot be opposite edges of the
+square: if they were, the two remaining differences would coincide.
+Thus they are adjacent and share an extreme entry. The remaining vertex
+must have value $1$ to supply differences $+1$ and $-1$.
+This gives exactly the following eight tiles, listed as $(a,b,c,d)$:
+\begin{equation}\label{eq:tiles}
+\begin{split}
+ &(0,1,2,0),\ (0,2,1,0),\ (0,2,2,1),\ (1,0,0,2),\\
+ &(1,2,2,0),\ (2,0,0,1),\ (2,0,1,2),\ (2,1,0,2).
+\end{split}
+\end{equation}
+Each listed tile satisfies the condition, which also verifies sufficiency.
+
+Read a two-row array by columns. The nonisolated vertices of $H_1$ are the
+ordered pairs $01,02,10,12,20,21$, with adjacency
+\begin{equation}\label{eq:stars}
+ 02\longleftrightarrow\{10,21\},\qquad
+ 20\longleftrightarrow\{01,12\}.
+\end{equation}
+This is the disjoint union of two copies of the star $K_{1,2}$.
+In particular, the neighbors of any column state have distinct first entries.
+
+\begin{lemma}\label{lem:structure}
+For every $k\geq1$, the nonisolated part of $H_k$ consists of two copies
+of $K_{1,2}$ and $2b(k)-4$ copies of $K_2$.
+\end{lemma}
+\begin{proof}
+For distinct symbols $u,v$, let $R_{uv}$ be the length-$(k+1)$ word
+$uvuvu\cdots$. The two words $R_{02}$ and $R_{20}$ each have exactly two
+neighbors. For $R_{02}$, if the first column is $01$, the next must be $20$;
+if it is $02$, the next first entry $2$ forces the next column to be $21$.
+Continuing with \eqref{eq:stars} determines the whole lower row.
+The case $R_{20}$ follows by interchanging $0$ and $2$.
+The resulting two stars are
+\[
+ R_{02}\longleftrightarrow\{R_{10},R_{21}\},\qquad
+ R_{20}\longleftrightarrow\{R_{01},R_{12}\}.
+\]
+The six words are distinct since $k+1\geq2$.
+
+To show that there are no other branching vertices, take a row $s$ with
+at least one neighbor. Its adjacent entries are unequal by
+\eqref{eq:tiles}. If $s$ contains no $1$, it is $R_{02}$ or $R_{20}$.
+Otherwise some adjacent pair of $s$ involves $1$, since the row has at
+least two entries. Inspection of \eqref{eq:tiles} shows that each such
+top pair has exactly one permitted lower pair. Starting with that pair,
+extend to the right and left. At each step the top entry of the next
+column is prescribed, and \eqref{eq:stars} supplies at most one neighboring
+column with that first entry. The extension is therefore unique whenever
+it exists. All rows other than the two centers have degree at most one.
+The four displayed leaves have degree one. Removing these two stars
+therefore leaves a graph of maximum degree one, whose nonisolated
+components are copies of $K_2$.
+
+It remains to count these edges. Reading the same two-row array either
+by rows or by columns shows that the number of directed edges of $H_k$
+equals the number of walks of length $k$ in $H_1$.
+In a single $K_{1,2}$ the total number of walks of length $2m$ is
+$3\cdot2^m$: each of the three starting vertices has $2^m$ such walks.
+For length $2m+1$, the center contributes $2^{m+1}$ and each leaf
+contributes $2^m$, for a total $4\cdot2^m$.
+Thus the two stars together have $4b(k)$ walks of length $k\geq1$.
+The two stars in $H_k$ account for eight directed edges. Each remaining
+$K_2$ accounts for two, giving $(4b(k)-8)/2=2b(k)-4$ copies.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:main}]
+For positive walk length $n$, isolated vertices contribute nothing.
+By the star calculation, the two stars of $H_k$ contribute $4b(n)$
+walks. Each of the $2b(k)-4$ copies of $K_2$ contributes exactly two:
+there is one walk from either starting vertex. Therefore
+\[
+ N(n,k)=4b(n)+2(2b(k)-4)=4\bigl(b(n)+b(k)-2\bigr).
+\]
+For $k=4$, $b(4)=6$, proving \eqref{eq:target}.
+The generating function follows from
+\begin{equation}\label{eq:gf}
+ B(x):=\sum_{n\geq1}b(n)x^n=\frac{2x+3x^2}{1-2x^2},\qquad
+ \sum_{n\geq1}a(n)x^n=B(x)+\frac{4x}{1-x}.
+\end{equation}
+These identities hold as formal power series, since the denominators
+have constant term one.
+\end{proof}
+
+\section{Companion formulas and source coverage}
+Put $C_k=b(k)-2$ and $A_k(x)=\sum_{n\geq1}T(n,k)x^n$.
+The same calculation gives, for every $k\geq1$,
+\begin{align}
+ T(2m+1,k)&=2^{m+1}+C_k,&
+ T(2m+2,k)&=3\cdot2^m+C_k,\label{eq:companions}\\
+ A_k(x)&=\frac{x\bigl((C_k+2)+x-(2C_k+3)x^2\bigr)}
+ {(1-x)(1-2x^2)}.\label{eq:generalgf}
+\end{align}
+Also $T(n+2,k)=2T(n,k)-C_k$ for $n\geq1$.
+Subtracting this identity at two consecutive indices proves
+\begin{equation}\label{eq:recurrence}
+ T(n,k)=T(n-1,k)+2T(n-2,k)-2T(n-3,k)\qquad(n\geq4).
+\end{equation}
+For $k=1$, $C_1=0$, so the stronger recurrence is
+$T(n,1)=2T(n-2,1)$ for $n\geq3$.
+These prove every column recurrence listed in A209727, not just those
+listed for $k\leq7$ \cite{a209727}.
+For each fixed $k$, the same parity formulas also imply
+$\lim_{n\to\infty}T(n,k)^{1/n}=\sqrt{2}$: on either parity the
+exponential factor is a constant multiple of $2^{n/2}$, and the
+additive constant $C_k$ does not change its $n$th-root limit.
+
+\begin{corollary}\label{cor:beck-peterson}
+For $a(n)=T(n,2)$, the sequence A209721,
+\[
+ a(n)=\mathrm{A029744}(n+1)+1\quad(n\geq1),\qquad
+ a(n)=2a(n-2)-1\quad(n\geq3).
+\]
+For $n\geq3$, $a(n)$ also counts integer triangles having two specified
+side lengths $a(n-1)$ and $a(n-2)$.
+\end{corollary}
+\begin{proof}
+Since $b(2)=3$, Theorem~\ref{thm:main} gives $a(n)=b(n)+1$.
+The identification $b(n)=\mathrm{A029744}(n+1)$ proves Beck's first
+March 26, 2022 conjecture. Equation~\eqref{eq:b} gives
+$b(n)=2b(n-2)$ for $n\geq3$, so
+$a(n)=2(a(n-2)-1)+1=2a(n-2)-1$, proving Peterson's April 26, 2020
+empirical recurrence \cite{a209721}.
+The parity formulas show that $a(n)$ is strictly increasing.
+Writing $A=a(n-1)$ and $B=a(n-2)$, the third side is any integer from
+$A-B+1$ to $A+B-1$, inclusive. There are $2B-1=a(n)$ choices.
+\end{proof}
+
+\begin{corollary}\label{cor:diagonal}
+The diagonal of A209727 satisfies
+\[
+ T(n,n)=2b(n)-2=\mathrm{A027383}(n)\qquad(n\geq1).
+\]
+\end{corollary}
+\begin{proof}
+Set $k=n$ in Theorem~\ref{thm:main}. For $n=2m\geq2$, the result is
+$3\cdot2^m-2$; for $n=2m+1\geq1$, it is $2^{m+2}-2$.
+These are the defining parity formulas of A027383 \cite{a027383}, proving
+the ``Diagonal is A027383'' cross-reference in A209727 \cite{a209727}.
+The OEIS offset of A027383 is zero, but the array diagonal begins at
+$n=1$, with $2,4,6,10,14,\ldots$; there is no index shift or assertion
+about $T(0,0)$.
+\end{proof}
+
+The following coverage map distinguishes the source statements.
+For A209721 the generating function is labelled empirical; Barker's
+formulas in A209722--A209726 are labelled conjectures.
+\begin{center}
+\small
+\begin{tabularx}{\textwidth}{@{}p{0.19\textwidth}X p{0.26\textwidth}@{}}
+\toprule
+Source & Statement & Coverage\\
+\midrule
+A209721 \cite{a209721} & Empirical order-three recurrence and Barker's
+March 23, 2012 generating function ($k=2$, $C_2=1$)
+& Proved by \eqref{eq:generalgf}--\eqref{eq:recurrence}\\
+A209721 & Beck's first conjecture; Peterson's recurrence and triangle count
+& Proved by Corollary~\ref{cor:beck-peterson}\\
+A209721 & Beck's second conjecture: zero positions in
+$\mathrm{A309019}(n+2)-\mathrm{A002487}(n+2)$ & Not covered\\
+A209722 \cite{a209722} & Barker's July 12, 2018 formulas and empirical
+recurrence ($k=3$, $C_3=2$) & Proved here; Andrew's earlier outline
+\cite{andrew} cited\\
+A209723 \cite{a209723} & Barker's July 12, 2018 formulas and empirical
+recurrence ($k=4$, $C_4=4$) & Proved by Theorem~\ref{thm:main} and
+\eqref{eq:recurrence}\\
+A209724 \cite{a209724} & Barker's March 7, 2018 formulas and empirical
+recurrence ($k=5$, $C_5=6$) & Proved by \eqref{eq:companions}--\eqref{eq:recurrence}\\
+A209724 & Reverter i Bigas's October 11, 2020 smallest-integer/divisor
+conjecture & Not covered\\
+A209725 \cite{a209725} & Barker's July 12, 2018 formulas and empirical
+recurrence ($k=6$, $C_6=10$) & Proved by \eqref{eq:companions}--\eqref{eq:recurrence}\\
+A209726 \cite{a209726} & Barker's July 12, 2018 formulas and empirical
+recurrence ($k=7$, $C_7=14$) & Proved by \eqref{eq:companions}--\eqref{eq:recurrence}\\
+A209727 \cite{a209727} & Column recurrences; column 1 is A029744$(n+1)$
+& Proved above for every $k\geq1$\\
+A209727 & Diagonal is A027383 & Proved by Corollary~\ref{cor:diagonal}\\
+\bottomrule
+\end{tabularx}
+\end{center}
+The formulas here start at $n=1$; assigning a zero constant term to a
+generating function does not extend the array enumeration to $n=0$.
+The accompanying Python script independently enumerates all $81$ tiles,
+compares row-pair enumeration with column-walk enumeration for widths
+$2$--$6$, and checks the component decomposition through width $12$.
+It checks all $210$ tabulated A209723 values and all $1512$ tabulated
+A209727 values. These finite checks support, but do not replace, the
+all-dimension proof above.
+
+\paragraph{Lean statement and proof scope.}
+The declaration \texttt{result} in the
+\href{https://github.com/the-omega-institute/trureturing/blob/cdafeab0d44da2b6840cfc802535d2f94a146fad/D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.lean}{pinned five-column Lean file}
+formalizes the case $k=4$: the two parity identities,
+the recurrence for $n\geq4$, existence of the zero-constant source series,
+and its denominator identity. Its array entries are in $\mathrm{Fin}\,3$,
+its differences are signed integers, and its count is divided by four,
+as in our definition of $T(n,4)$.
+The all-width theorem and Corollaries~\ref{cor:beck-peterson}
+and~\ref{cor:diagonal} have the written proofs above; the Python checks
+cover finite instances of those statements.
+
+\paragraph{License and reproducibility.}
+Copyright 2026 Haobo Ma and Wenlin Zhang.
+This note is licensed under Creative Commons Attribution 4.0 International
+(CC BY 4.0). The accompanying source package contains this LaTeX document,
+the verification script, and build instructions. No external computation
+is needed to check the proof.
+
+\begin{thebibliography}{10}
+\bibitem{a209723} R. H. Hardin, OEIS A209723: five-column ternary arrays with
+distinct clockwise edge differences, March 12, 2012; FORMULA contributions
+by C. Barker, July 12, 2018. \url{https://oeis.org/A209723}.
+\bibitem{a209727} R. H. Hardin, OEIS A209727: rectangular ternary arrays with
+distinct clockwise edge differences, March 12, 2012.
+\url{https://oeis.org/A209727}.
+\bibitem{a029744} N. J. A. Sloane, OEIS A029744: Numbers of the form
+$2^k$ or $3\cdot2^k$. \url{https://oeis.org/A029744}.
+\bibitem{andrew} Andrew, answer to ``Could someone provide an analytical
+proof of empirically found formula?'', Math Stack Exchange, November 8, 2024
+(00:07:06 UTC),
+answer 4995628. \url{https://math.stackexchange.com/a/4995628}.
+\bibitem{stanley} R. P. Stanley, \emph{Enumerative Combinatorics, Volume 1},
+second edition, Cambridge University Press, 2012, Section 4.7.
+\url{https://doi.org/10.1017/CBO9781139058520}.
+\bibitem{a209721} R. H. Hardin, OEIS A209721: three-column arrays,
+March 12, 2012; formula by C. Barker, March 23, 2012.
+\url{https://oeis.org/A209721}.
+\bibitem{a209722} R. H. Hardin, OEIS A209722: four-column arrays,
+March 12, 2012; conjectures by C. Barker, July 12, 2018.
+\url{https://oeis.org/A209722}.
+\bibitem{a209724} R. H. Hardin, OEIS A209724: six-column arrays,
+March 12, 2012; conjectures by C. Barker, March 7, 2018.
+\url{https://oeis.org/A209724}.
+\bibitem{a209725} R. H. Hardin, OEIS A209725: seven-column arrays,
+March 12, 2012; conjectures by C. Barker, July 12, 2018.
+\url{https://oeis.org/A209725}.
+\bibitem{a209726} R. H. Hardin, OEIS A209726: eight-column arrays,
+March 12, 2012; conjectures by C. Barker, July 12, 2018.
+\url{https://oeis.org/A209726}.
+\bibitem{a027383} R. K. Guy, OEIS A027383:
+$a(2m)=3\cdot2^m-2$, $a(2m+1)=2^{m+2}-2$.
+\url{https://oeis.org/A027383}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,15 @@
+{
+  "id": "hardin-barker-a209723-edge-differences",
+  "revision": 2,
+  "problem_ids": ["hardin-barker-a209723-edge-differences"],
+  "topic": "Barker's OEIS A209723 parity and generating-function conjectures, with rectangular-array corollaries",
+  "title": "OEIS A209723: Barker's conjectures on distinct clockwise edge differences",
+  "creators": [
+    {"name": "Ma, Haobo", "affiliation": "ChronoAI Pte Ltd, Singapore"},
+    {"name": "Zhang, Wenlin", "affiliation": "National University of Singapore; ChronoAI Pte Ltd, Singapore"}
+  ],
+  "abstract": "We prove the Conjectures of Colin Barker in the FORMULA section of OEIS A209723, dated July 12, 2018: the parity formulas and ordinary generating function for ternary arrays with distinct clockwise edge differences. We also prove Hardin's empirical recurrence. A decomposition of the row-compatibility graph into two three-vertex stars and isolated edges gives a formula for every rectangular size. Its corollaries include the companion formulas in A209721–A209726, Beck's first A209721 conjecture, Peterson's A209721 recurrence and triangle interpretation, and the column recurrences and diagonal identification in A209727.",
+  "summary": "For n,k >= 1, one quarter of the number of labelled (n+1) by (k+1) ternary arrays with pairwise distinct signed clockwise edge differences in every consecutive 2 by 2 block is b(n)+b(k)-2, where b(2m+1)=2^(m+1) and b(2m+2)=3*2^m. Written proofs establish this all-width formula and its corollaries, including A209721(n)=A029744(n+1)+1, A209721(n)=2*A209721(n-2)-1 for n>=3, and T(n,n)=A027383(n) for n>=1. The linked Lean declaration formalizes the five-column specialization; Python checks cover finite instances. Beck's second A209721 conjecture and the A209724 Reverter i Bigas conjecture are not covered.",
+  "license": "cc-by-4.0",
+  "evidence_url": "https://github.com/the-omega-institute/trureturing/blob/cdafeab0d44da2b6840cfc802535d2f94a146fad/D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.lean"
+}

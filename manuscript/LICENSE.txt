@@ -1,0 +1,9 @@
+Copyright 2026 Haobo Ma and Wenlin Zhang.
+
+This note, its original source, and the verification script are licensed under
+Creative Commons Attribution 4.0 International (CC BY 4.0).
+License identifier: cc-by-4.0.
+License text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Bibliographic references identify third-party materials. Their inclusion does
+not relicense the referenced sources or their websites.

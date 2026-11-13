@@ -1,0 +1,79 @@
+{
+  "checked_date": "2026-11-02",
+  "python": "Python 3.13; verifier requires Python 3.8+ and the standard library",
+  "offline_command": "python3 verify.py",
+  "offline_output_sha256": "79042ba81be07906968d5eb23052422887a2fe0398a6a87e858874caa99d8dbd",
+  "table_check_command": "python3 verify.py --data DATA_DIRECTORY",
+  "table_check_output_sha256": "6be6a188734570b0370e53ee706e9cb22487aa705ee62e52d18094c29dc21820",
+  "inputs": [
+    {
+      "name": "b209723.txt",
+      "bytes": 4419,
+      "sha256": "67c1ee54560cfb5da53a7bdf7b21b4141856fff5321130ba8d1145d9d341305b",
+      "url": "https://oeis.org/A209723/b209723.txt"
+    },
+    {
+      "name": "b209727.txt",
+      "bytes": 15394,
+      "sha256": "46b5cd52763f475afeee6aa61ca177e09fb060c3be92f50c01d56566019ec58b",
+      "url": "https://oeis.org/A209727/b209727.txt"
+    },
+    {
+      "name": "A209721.json",
+      "bytes": 3038,
+      "sha256": "67a1cdbee1af3e0d1e5608e9a754cbdaf13e8dfcbdd3cdc0cf942785ad409a6f",
+      "url": "https://oeis.org/search?q=id:A209721&fmt=json"
+    },
+    {
+      "name": "A209722.json",
+      "bytes": 2209,
+      "sha256": "17177edabd599819946b582f72c19635011c7ea57ad33b7c793ff3d67ac78b91",
+      "url": "https://oeis.org/search?q=id:A209722&fmt=json"
+    },
+    {
+      "name": "A209723.json",
+      "bytes": 2194,
+      "sha256": "0a8568a03dacf576636bc519af44643b785e914a8c8313f6a6e4f4c4e773c92b",
+      "url": "https://oeis.org/search?q=id:A209723&fmt=json"
+    },
+    {
+      "name": "A209724.json",
+      "bytes": 1783,
+      "sha256": "2bef0f3379675f2ff03326715a08ef431b4e6079262bf278f1ecc33cf4bccafb",
+      "url": "https://oeis.org/search?q=id:A209724&fmt=json"
+    },
+    {
+      "name": "A209725.json",
+      "bytes": 1482,
+      "sha256": "20ca9a03a11fe58686a9be7301c4b82437121d5babe150609bb53f81ea828db8",
+      "url": "https://oeis.org/search?q=id:A209725&fmt=json"
+    },
+    {
+      "name": "A209726.json",
+      "bytes": 1527,
+      "sha256": "9dfeedc007adbe927dc8e0a6e13338f960a5da0b83d0f64cdd91a11e47836200",
+      "url": "https://oeis.org/search?q=id:A209726&fmt=json"
+    },
+    {
+      "name": "A029744.json",
+      "bytes": 7453,
+      "sha256": "e3b38d84ec938640c9391bb32fa70f1b2295b72c1c9f7cfb89af16f06091ba4a",
+      "url": "https://oeis.org/search?q=id:A029744&fmt=json"
+    },
+    {
+      "name": "A027383.json",
+      "bytes": 11979,
+      "sha256": "ae715d9cfa336c1c7a33b6346bb350f816ddd8ced127dbe27d9f60f12140e9c1",
+      "url": "https://oeis.org/search?q=id:A027383&fmt=json"
+    }
+  ],
+  "tex": {
+    "engine": "Tectonic 0.17.0",
+    "main_source": "note.tex"
+  },
+  "coverage": {
+    "written_proof": "All n,k >= 1 and the stated Beck, Peterson and diagonal corollaries.",
+    "lean_declaration": "HardinBarkerA209723EdgeDifferences.result: five-column specialization.",
+    "finite_checks": "Ranges and algorithms are specified in README.md and verify.py."
+  }
+}
