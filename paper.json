@@ -2,16 +2,16 @@
   "files": {
     "pdf": {
       "bytes": 69025,
-      "matches_public": null,
+      "matches_public": true,
       "path": "paper.pdf",
-      "public_sha256": null,
+      "public_sha256": "9e2b06434d01fef18dfb7929c4cda7d4a53dd4d09e78b2bdcf3a4f13cbef86cd",
       "sha256": "9e2b06434d01fef18dfb7929c4cda7d4a53dd4d09e78b2bdcf3a4f13cbef86cd"
     },
     "source": {
       "bytes": 14396,
-      "matches_public": null,
+      "matches_public": true,
       "path": "source.archive",
-      "public_sha256": null,
+      "public_sha256": "db9ef08096ef5ad46737453548c5e0375fdc76b6ac445569d3e6dab2f344d6ce",
       "sha256": "db9ef08096ef5ad46737453548c5e0375fdc76b6ac445569d3e6dab2f344d6ce"
     }
   },
@@ -38,6 +38,8 @@
     "license": "CC-BY-4.0",
     "msc": [],
     "pdf": {
+      "bytes": 69025,
+      "sha256": "9e2b06434d01fef18dfb7929c4cda7d4a53dd4d09e78b2bdcf3a4f13cbef86cd",
       "url": "/api/v1/collected-papers/hardin-barker-a209723-edge-differences/files/pdf?version=2"
     },
     "previous_version": null,
@@ -46,6 +48,8 @@
     "record": "hardin-barker-a209723-edge-differences",
     "repository_name": "10.5281-zenodo.23903300",
     "source": {
+      "bytes": 14396,
+      "sha256": "db9ef08096ef5ad46737453548c5e0375fdc76b6ac445569d3e6dab2f344d6ce",
       "url": "/api/v1/collected-papers/hardin-barker-a209723-edge-differences/files/source?version=2"
     },
     "title": "OEIS A209723: Barker's conjectures on distinct clockwise edge differences",
