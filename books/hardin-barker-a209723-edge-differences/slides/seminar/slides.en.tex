@@ -1,0 +1,225 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{From squares to two stars}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}Chrono AI, Singapore \and \inst{2}National University of Singapore, Singapore}
+\date{2026-11-16}
+\begin{document}
+% Manuscript: title and author metadata, version 2
+\begin{frame}
+\titlepage
+\note{Explain the version 2 rectangular count: a local subtraction rule leads to an exact formula for every height and width.}
+\end{frame}
+% Manuscript: sections 1--3, argument order
+\begin{frame}{Route}
+\tableofcontents
+\note{Start with the question, explain local squares and the row graph, then obtain the count and its consequences.}
+\end{frame}
+\section{Question}
+% Manuscript: §1; book README, motivating example
+\begin{frame}{Four different differences}
+\[
+\begin{pmatrix}0&1\\2&0\end{pmatrix}
+\quad\longrightarrow\quad 1,-1,2,-2.
+\]
+\begin{itemize}
+\item Entries are $0,1,2$; subtract clockwise.
+\item Signed integer differences; test every adjacent square.
+\item How many labelled grids work at a given size?
+\end{itemize}
+\note{Read $0,1,0,2,0$ clockwise, subtracting the previous entry. Use signed integers, not absolute values or arithmetic modulo three. All positions remain labelled.}
+\end{frame}
+% Manuscript: Theorem 1; book rectangular-count
+\begin{frame}{The rectangular count}
+\begin{bookresult}{rectangular-count}
+For $n,k\geq1$, $T(n,k)=b(n)+b(k)-2$.
+\end{bookresult}
+\[
+\begin{aligned}
+b(2m+1)&=2^{m+1},\\
+b(2m+2)&=3\cdot2^m\quad(m\geq0).
+\end{aligned}
+\]
+$T(n,k)$ is one quarter of the actual $(n+1)\times(k+1)$ count.
+\medskip
+
+Height and width make separate additive contributions.
+\note{Division by four is the OEIS numerical normalization, not a quotient by symmetries. The sequence $b$ starts $2,3,4,6,8,12$. The written all-width proof will come from two stars and separate edges.}
+\end{frame}
+\section{Local rule}
+% Manuscript: §2, eight tiles
+\begin{frame}{Why only eight squares?}
+\[
+\text{differences}\subseteq\{-2,-1,0,1,2\},\qquad\text{sum}=0.
+\]
+\begin{enumerate}
+\item Four are distinct, so the omitted value must be $0$.
+\item Opposite $+2,-2$ edges would repeat another difference.
+\item They meet at an extreme; the remaining vertex is $1$.
+\end{enumerate}
+\[
+\{\text{four differences}\}=\{-2,-1,1,2\}.
+\]
+\note{The five candidates sum to zero and so do the four used values. A top $+2$ edge and clockwise bottom $-2$ edge force both rows to be $02$, leaving two zero differences. Rotate for the other positions. The shared extreme and remaining one yield exactly eight local fillings.}
+\end{frame}
+% Manuscript: §2, equation stars
+\begin{frame}{A column becomes a card}
+\[
+\begin{aligned}
+10&\longleftrightarrow02\longleftrightarrow21,\\[5pt]
+01&\longleftrightarrow20\longleftrightarrow12.
+\end{aligned}
+\]
+\begin{itemize}
+\item Card $02$ means zero above two.
+\item Each step adds a column: $k$ steps give $k+1$ columns.
+\item Backtracking is allowed; the starting card matters.
+\end{itemize}
+\note{These are two three-vertex stars $K_{1,2}$. Cards $00,11,22$ are isolated. Join $02$ and $10$ to check an allowed square. The useful property is that a card's different neighbors have different upper entries.}
+\end{frame}
+% Manuscript: §2, star walk calculation
+\begin{frame}{Two choices every two steps}
+On one star: choose a leaf, then return to the center.
+\[
+\begin{array}{c|c|c}
+\text{length}&\text{from center}&\text{from each leaf}\\\hline
+2m&2^m&2^m\\
+2m+1&2^{m+1}&2^m
+\end{array}
+\]
+\[
+\text{total on two stars}=4b(r)\quad(r\geq1).
+\]
+\note{Here $m\geq0$. At length zero each starting vertex has one empty walk, but the array argument uses positive lengths. Summing center and two leaves gives $3\cdot2^m$ for even length and $4\cdot2^m$ for odd length. Doubling for two stars gives the definition of $b$.}
+\end{frame}
+\section{Row graph}
+% Manuscript: Lemma 1; book row-structure
+\begin{frame}{Only two rows can branch}
+Fix width $k+1$; a whole row is a vertex of $H_k$.
+\[
+\begin{aligned}
+R_{02}&\longleftrightarrow\{R_{10},R_{21}\},\\
+R_{20}&\longleftrightarrow\{R_{01},R_{12}\}.
+\end{aligned}
+\]
+$R_{uv}$ is the length-$(k+1)$ alternating row $uvuvu\cdots$.
+\medskip
+
+A row containing $1$ fixes a neighboring pair below it; extension in either direction is unique.
+\note{A row with a neighbor has unequal adjacent entries. Without a one it must alternate zero and two. Otherwise upper pairs $01,10,12,21$ force lower pairs $20,02,20,02$. Uniqueness of upper entries among card neighbors forces the whole lower row. Thus all other vertices have at most one neighbor.}
+\end{frame}
+% Manuscript: Lemma 1; book row-structure
+\begin{frame}{Count the remaining edges}
+\begin{bookresult}{row-structure}
+For $k\geq1$, the nonisolated part is two $K_{1,2}$ and $2b(k)-4$ copies of $K_2$.
+\end{bookresult}
+\begin{itemize}
+\item A two-row grid is both a directed edge of $H_k$ and a $k$-step card walk.
+\item There are $4b(k)$; two stars account for eight.
+\item Divide the remainder by two orientations per edge.
+\end{itemize}
+\note{Rows without neighbors are isolated vertices. Outside the two stars every nonisolated vertex has degree one, so components are single edges. At $k=1$, $b(1)=2$ and there are no residual edges; the boundary case is included.}
+\end{frame}
+% Manuscript: Theorem 1 proof
+\begin{frame}{Now just add}
+For $n\geq1$, isolated vertices contribute nothing.
+\[
+\begin{aligned}
+\text{two stars}&:\quad4b(n),\\
+\text{separate edges}&:\quad2(2b(k)-4),\\
+N(n,k)&=4\bigl(b(n)+b(k)-2\bigr).
+\end{aligned}
+\]
+Five columns: $k=4$, eight separate edges, $N(1,4)=24$ and $T(1,4)=6$.
+\note{On a single edge there is exactly one positive-length walk from each end. Divide the sum by four. Symmetry in $n,k$ agrees with transposing the grid; the argument also establishes divisibility of the raw count by four.}
+\end{frame}
+\section{Consequences}
+% Manuscript: Theorem 1 and §3; book five-column
+\begin{frame}{The five-column formula}
+\begin{bookresult}{five-column}
+For $a(n)=T(n,4)$ and $m\geq0$,
+\[
+\begin{aligned}
+a(2m+1)&=2^{m+1}+4,\\
+a(2m+2)&=3\cdot2^m+4.
+\end{aligned}
+\]
+The recurrence starts at $n\geq4$. A series $A$ exists with constant coefficient zero and coefficient $a(n)$ for $n\geq1$; every such series satisfies
+\[
+A(1-x)(1-2x^2)=x(6+x-11x^2).
+\]
+\end{bookresult}
+\note{This result block is restricted to five columns. The recurrence is $a(n)=a(n-1)+2a(n-2)-2a(n-3)$ for $n\geq4$. Positive coefficients of $A$ are $a(n)$. This is the complete scope of the linked Lean result; the arbitrary-width graph decomposition has a written proof.}
+\end{frame}
+% Manuscript: §3, Corollary 1; book beck-peterson
+\begin{frame}{The count also counts triangles}
+\begin{bookresult}{beck-peterson}
+$u(n)=T(n,2)=b(n)+1=\mathrm{A029744}(n+1)+1$ for $n\geq1$.
+\[
+u(n)=2u(n-2)-1\quad(n\geq3).
+\]
+For $n\geq3$, there are $u(n)$ nondegenerate integer triangles with specified sides $u(n-1),u(n-2)$.
+\end{bookresult}
+Third side: $A-B+1$ through $A+B-1$, giving $2B-1$ choices.
+\note{Here $A=u(n-1)>B=u(n-2)>0$ and $n\geq3$. The strict inequalities exclude degenerate endpoints. The source calls this sequence $a$; we use $u$ to avoid confusion with five columns. The first case has sides four and three, with third side two through six: five choices.}
+\end{frame}
+% Manuscript: §3, Corollary 2; book diagonal
+\begin{frame}{Square grids and scope}
+\begin{bookresult}{diagonal}
+For $n\geq1$, $T(n,n)=2b(n)-2=\mathrm{A027383}(n)$.
+\end{bookresult}
+\begin{itemize}
+\item Substitute $k=n$: first terms $2,4,6,10,14,\ldots$.
+\item No extension to $n=0$ or $k=0$ is asserted.
+\item Beck's second zero-position conjecture and the A209724 smallest-integer/divisor conjecture are outside scope.
+\end{itemize}
+\note{There is no diagonal index shift. A027383 has an index-zero term, but the array diagonal starts at one. The two uncovered OEIS conjectures are separate questions; the formulas here do not claim to settle them.}
+\end{frame}
+% Manuscript: Bibliography and Lean scope
+\begin{frame}{Sources and reusable proofs}
+\small
+Haobo Ma and Wenlin Zhang, version 2 (2026).\\
+\href{https://doi.org/10.5281/zenodo.23903301}{doi:10.5281/zenodo.23903301}, CC BY 4.0.
+\begin{itemize}
+\item R. H. Hardin: A209723/A209727 problem and normalization.
+\item Colin Barker: parity and generating-function conjectures.
+\item Andrew (2024): four-column tile proof outline.
+\item R. P. Stanley (2012), \emph{Enumerative Combinatorics 1}, §4.7: transfer matrices.
+\end{itemize}
+Shared formalization tasks: \href{https://github.com/the-omega-institute/trureturing-requests/issues/222}{decomposition}, \href{https://github.com/the-omega-institute/trureturing-requests/issues/223}{rectangles and diagonal}, \href{https://github.com/the-omega-institute/trureturing-requests/issues/224}{triangles}.
+\note{Five columns have a direct formal theorem. Arbitrary width and the consequences have manuscript proofs. The existing three-column formal recurrence and series can be reused. These links share the canonical request queue and do not request duplicate five-column proofs.}
+\end{frame}
+\appendix
+% Manuscript: Section 2, equation tiles
+\begin{frame}{The eight local fillings}
+\[
+\begin{aligned}
+&(0,1,2,0),\ (0,2,1,0),\\
+&(0,2,2,1),\ (1,0,0,2),\\
+&(1,2,2,0),\ (2,0,0,1),\\
+&(2,0,1,2),\ (2,1,0,2).
+\end{aligned}
+\]
+Each tuple is $(a,b,c,d)$ for $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$.
+\note{Direct subtraction verifies sufficiency. Combined with the necessity argument, this is a complete list.}
+\end{frame}
+% Manuscript: Section 3, recurrence and generating function
+\begin{frame}{Recurrence and formal-series calculation}
+\[
+\begin{aligned}
+a(n+2)&=2a(n)-4 &&(n\geq1),\\
+a(n+3)-a(n+2)&=2a(n+1)-2a(n) &&(n\geq1).
+\end{aligned}
+\]
+\[
+\begin{aligned}
+B(x)&=\frac{2x+3x^2}{1-2x^2},\\
+A(x)&=B(x)+\frac{4x}{1-x}.
+\end{aligned}
+\]
+The denominators have constant coefficient one, so are formally invertible.
+\note{Reindex the recurrence to target index at least four. Formal series assert coefficient identities, not analytic convergence.}
+\end{frame}
+% Manuscript: exact formal scope, generated evidence ledger
+\FormalVerification
+\end{document}

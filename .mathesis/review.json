@@ -1,0 +1,34 @@
+{
+  "results": {
+    "rectangular-count": {
+      "comparison_verdict": "special case",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Manuscript Theorem 1 quantifies over all n,k>=1 and includes the k=4 parity and series consequences. Public five-column result quantifies over natural m but fixes Matrix (Fin (n+1)) (Fin 5) (Fin 3), so it proves the k=4 consequence and additionally the recurrence, not arbitrary width. Differences are signed integers, count is rational Nat.card/4, and constant-zero PowerSeries coefficient data start at n=1. No all-width public declaration was located in the inspected relevant modules; retain the written general theorem."
+    },
+    "row-structure": {
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Manuscript Lemma 1 gives a graph decomposition for every k>=1, including zero residual edges at k=1. The five-column source privately enumerates row compatibility and counts fixed-width walks, but its public result is a counting/series theorem, not an all-width graph isomorphism or component decomposition. No corresponding public GID was found; private frozen entries are not an arbitrary-width public theorem."
+    },
+    "five-column": {
+      "comparison_verdict": "same",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Exact separately identified specialization of manuscript Theorem 1 at k=4, plus manuscript Section 3 recurrence. Book states every clause of claim/result: even 2(m+1), odd 2m+1, recurrence m+4, existence of A in PowerSeries Q with coeff 0=0 and coeff n=a n for n>=1, and every such A times (1-X)(1-2X^2)=X(6+X-11X^2). Fin 3 values coerced to Z before subtraction; Nat.card of labelled (n+1)-by-5 arrays divided by rational four. The zero coefficient is not a(0). Frozen kind theorem confirmed at the full pin; result L649, claim L104."
+    },
+    "beck-peterson": {
+      "comparison_verdict": "variant",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209721EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Manuscript Corollary 1 (independent corollary counter) states A209721(n)=A029744(n+1)+1 for n>=1, the two-step affine recurrence for n>=3, and an integer third-side count for n>=3. Book renames this a(n) to u(n) to avoid conflict with five-column a. The inspected public three-column result has identical source arrays and rational normalization but states only an order-three recurrence and formal series. It can supply a derivation with initial coefficients but does not state sequence identification, the affine lag-two recurrence or the strict triangle inequalities. No exact public declaration found."
+    },
+    "diagonal": {
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "scope": "Manuscript Corollary 2 quantifies over n>=1 and identifies the variable-width diagonal T(n,n) with A027383(n), without shift or a claim at n=0. Neither fixed-width public result states it. It follows immediately from the arbitrary-width Theorem 1 and shares that construction/request rather than requiring another graph proof."
+    }
+  }
+}

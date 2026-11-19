@@ -1,0 +1,29 @@
+{
+  "duration": "2:35",
+  "id": "001-two-stars",
+  "lean": [
+    "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result"
+  ],
+  "narration": {
+    "engine": "Kokoro-82M v1.0 (onnx)",
+    "language": "en",
+    "voice": "af_heart"
+  },
+  "outputs": {
+    "cover": "hardin-barker-a209723-edge-differences_001_cover.jpg",
+    "narrated_720p": "hardin-barker-a209723-edge-differences_001_720p_narrated.mp4"
+  },
+  "publication_basis": "pinned",
+  "released": "2026-11-16",
+  "resolution": "1280x720@30",
+  "style": "trureturing cyberpunk · deterministic canvas",
+  "subject": "https://github.com/the-omega-institute/trureturing",
+  "subtitles": [
+    "zh",
+    "en"
+  ],
+  "summary": "A worked square becomes a two-star walk graph, explaining exact counts for rectangular ternary grids.",
+  "summary_zh": "从一个小方格到两颗星的走法图，解释三元长方形网格的精确计数。",
+  "title": "Two stars count the grids",
+  "title_zh": "方格计数的两颗星"
+}

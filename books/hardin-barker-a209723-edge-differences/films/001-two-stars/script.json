@@ -1,0 +1,149 @@
+{
+  "voice": "af_heart",
+  "speed": 0.98,
+  "say": {
+    "Lean": "Leen",
+    "Barker": "Barker"
+  },
+  "music": {
+    "bpm": 84,
+    "progression": "d-minor"
+  },
+  "scenes": [
+    {
+      "id": "square",
+      "name": "ONE SQUARE",
+      "lead": 0.9,
+      "tail": 0.7,
+      "music": [
+        0.45,
+        0.15,
+        0.15,
+        0.0,
+        0.0
+      ],
+      "lines": [
+        [
+          "Fill a grid with zero, one and two. In every small square, require four different signed clockwise differences. How many grids work?",
+          "用零、一、二填网格，要求每个小方格的四条顺时针整数差互不相同。这样的网格有多少？"
+        ],
+        [
+          "This square gives one, minus one, two, minus two. The differences sum to zero, so zero is the missing difference.",
+          "这个方格给出一、负一、二、负二。四条差的和为零，因此被遗漏的差是零。"
+        ],
+        [
+          "Only eight local squares work. Their connections will turn our grid problem into a walk.",
+          "合格的小方格恰好有八种。它们的连接会把网格问题变成走路问题。"
+        ]
+      ]
+    },
+    {
+      "id": "cards",
+      "name": "TWO STARS",
+      "lead": 0.9,
+      "tail": 0.7,
+      "music": [
+        0.45,
+        0.15,
+        0.15,
+        0.0,
+        0.0
+      ],
+      "lines": [
+        [
+          "Read a two-row grid by columns. A card records its top and bottom entries. Allowed neighboring cards form two stars.",
+          "把两行网格按列读，每张卡片记录上下两个数。可相邻的卡片组成两颗星。"
+        ],
+        [
+          "From a center, choose either leaf, then return. Every two steps double the choices. Starting at a leaf also gives two choices every two steps.",
+          "从中心选一个叶子，再回到中心，每两步选择数翻倍。从指定叶子出发也是如此。"
+        ],
+        [
+          "Counting every starting card, the two stars have four times b of r walks of positive length r. The sequence b begins two, three, four, six, eight, twelve.",
+          "把所有起点都计入，两颗星的正步数 r 的走法共有四倍 b(r) 条。b 从二、三、四、六、八、十二开始。"
+        ]
+      ]
+    },
+    {
+      "id": "rows",
+      "name": "WHOLE ROWS",
+      "lead": 0.9,
+      "tail": 0.7,
+      "music": [
+        0.45,
+        0.15,
+        0.15,
+        0.0,
+        0.0
+      ],
+      "lines": [
+        [
+          "Now make each whole row a vertex. Join two rows when stacking them produces allowed squares. Each walk step adds a row.",
+          "现在把整行当成一个点，两行叠放合法就连边。每走一步就增加一行。"
+        ],
+        [
+          "Only the alternating zero-two rows can branch. Any other usable row contains a one, which fixes a neighboring pair. Extending left and right is then forced.",
+          "只有零二交替的两行能分叉。其他可用行含有一，它会确定邻行的一对数字，向左右延伸也都被迫确定。"
+        ],
+        [
+          "The usable part is two stars and separate edges. Count those edges by reading the same two-row grid as a column walk: there are two times b of k, minus four, separate edges.",
+          "因此图的非孤立部分由两颗星与独立边组成。同一两行网格又是列卡片图的走法，由此算出独立边共有二倍 b(k) 减四条。"
+        ]
+      ]
+    },
+    {
+      "id": "count",
+      "name": "ADD THE WALKS",
+      "lead": 0.9,
+      "tail": 0.7,
+      "music": [
+        0.45,
+        0.15,
+        0.15,
+        0.0,
+        0.0
+      ],
+      "lines": [
+        [
+          "For n plus one rows and k plus one columns, n and k are at least one. The stars contribute four times b of n walks.",
+          "对于 n 加一行、k 加一列，n 与 k 均至少为一。两颗星贡献四倍 b(n) 条走法。"
+        ],
+        [
+          "Each separate edge gives two walks of any positive length: start at either end and keep alternating. Isolated vertices contribute none.",
+          "每条独立边在任意正步数时都给出两条走法：从两端之一出发，来回交替。孤立点没有贡献。"
+        ],
+        [
+          "Add, then divide the actual count by four, as in the original problem. The answer is b of n plus b of k minus two. This is a numerical normalization, not a quotient by symmetry.",
+          "相加后，按原题约定把实际计数除以四，答案就是 b(n) 加 b(k) 减二。这是数值归一化，不是把对称填法合并。"
+        ]
+      ]
+    },
+    {
+      "id": "five",
+      "name": "FIVE COLUMNS",
+      "lead": 0.9,
+      "tail": 0.7,
+      "music": [
+        0.45,
+        0.15,
+        0.15,
+        0.0,
+        0.0
+      ],
+      "lines": [
+        [
+          "With five columns, k is four and b of four is six. The normalized counts begin six, seven, eight, ten, twelve, sixteen.",
+          "五列时 k 等于四，b(4) 等于六。归一化计数从六、七、八、十、十二、十六开始。"
+        ],
+        [
+          "The odd and even formulas below hold for every nonnegative integer m. The five-column Lean theorem also proves the recurrence from index four and the formal generating function with constant coefficient zero.",
+          "下方奇偶公式对每个非负整数 m 成立。五列的 Lean 定理还证明了从索引四开始的递推，以及零常数项的形式生成函数。"
+        ],
+        [
+          "Hardin posed the problem and Barker conjectured these formulas. Ma and Zhang explain every width through the graph decomposition; those broader results have the written proofs in the accompanying reading.",
+          "Hardin 提出问题，Barker 猜想这些公式。Ma 与 Zhang 用图分解解释任意宽度，更广的结论在配套阅读中给出书面证明。"
+        ]
+      ]
+    }
+  ]
+}

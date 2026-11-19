@@ -1,0 +1,225 @@
+\documentclass{beamer}
+\input{tbook-deck}
+\title{从方格到两颗星}
+\author{Haobo Ma\inst{1} \and Wenlin Zhang\inst{1,2}}
+\institute{\inst{1}Chrono AI, Singapore \and \inst{2}National University of Singapore, Singapore}
+\date{2026-11-16}
+\begin{document}
+% Manuscript: title and author metadata, version 2
+\begin{frame}
+\titlepage
+\note{讲解第 2 版的长方形计数公式：从一个局部相减规则，得到任意高度和宽度的准确计数。}
+\end{frame}
+% Manuscript: sections 1--3, argument order
+\begin{frame}{路线}
+\tableofcontents
+\note{先提出问题，再解释局部方格和整行图，最后得到公式及推论。}
+\end{frame}
+\section{问题}
+% Manuscript: §1; book README, motivating example
+\begin{frame}{每个方格必须有四种差}
+\[
+\begin{pmatrix}0&1\\2&0\end{pmatrix}
+\quad\longrightarrow\quad 1,-1,2,-2.
+\]
+\begin{itemize}
+\item 数字取自 $\{0,1,2\}$，沿顺时针相减。
+\item 带符号的整数差；每个相邻方格都要合格。
+\item 问：给定行数与列数，共有多少个填法？
+\end{itemize}
+\note{先从左上角顺时针读 $0,1,0,2,0$，每次减去前一个数。不要使用绝对值或模三运算。所有位置保留标号。}
+\end{frame}
+% Manuscript: Theorem 1; book rectangular-count
+\begin{frame}{长方形计数公式}
+\begin{bookresult}{rectangular-count}
+对所有 $n,k\geq1$，$T(n,k)=b(n)+b(k)-2$。
+\end{bookresult}
+\[
+\begin{aligned}
+b(2m+1)&=2^{m+1},\\
+b(2m+2)&=3\cdot2^m\quad(m\geq0).
+\end{aligned}
+\]
+$T(n,k)$ 是 $(n+1)\times(k+1)$ 实际填法数的四分之一。
+\medskip
+
+高度与宽度的贡献可以分开相加。
+\note{除以四是 OEIS 的数值归一化，不是对称商。$b$ 从 $2,3,4,6,8,12$ 开始。一般宽度公式的书面证明将由两颗星和独立边得到。}
+\end{frame}
+\section{局部}
+% Manuscript: §2, eight tiles
+\begin{frame}{为何只剩八种小方格？}
+\[
+\text{差}\subseteq\{-2,-1,0,1,2\},\qquad\text{差的和}=0.
+\]
+\begin{enumerate}
+\item 四个差不同，故遗漏的数只能是 $0$。
+\item $+2,-2$ 若在对边，另外两个差会相同。
+\item 它们相邻并共用极端值；剩余顶点是 $1$。
+\end{enumerate}
+\[
+\{\text{四条差}\}=\{-2,-1,1,2\}.
+\]
+\note{五个候选数的和为零，而使用的四个数之和也为零。上边 $+2$、下边顺时针 $-2$ 会迫使两行均为 $02$，另两差都为零。旋转覆盖其余位置。余下极端点和数字一恰好产生八种局部填法。}
+\end{frame}
+% Manuscript: §2, equation stars
+\begin{frame}{一列是一张卡片}
+\[
+\begin{aligned}
+10&\longleftrightarrow02\longleftrightarrow21,\\[5pt]
+01&\longleftrightarrow20\longleftrightarrow12.
+\end{aligned}
+\]
+\begin{itemize}
+\item $02$ 表示上方 $0$、下方 $2$。
+\item 一步添一列；$k$ 步对应两行、$k+1$ 列。
+\item 可以回头；起点也计入选择。
+\end{itemize}
+\note{这些是两颗三点星 $K_{1,2}$。$00,11,22$ 都孤立。读者可直接拼 $02$ 与 $10$ 验证对应的方格有效。重要性质：同一卡片的邻居，上端数字互不相同。}
+\end{frame}
+% Manuscript: §2, star walk calculation
+\begin{frame}{每两步，有两种选择}
+一颗星：中心选叶子，再回中心。
+\[
+\begin{array}{c|c|c}
+\text{步数}&\text{中心出发}&\text{每个叶子出发}\\\hline
+2m&2^m&2^m\\
+2m+1&2^{m+1}&2^m
+\end{array}
+\]
+\[
+\text{两颗星的总走法}=4b(r)\quad(r\geq1).
+\]
+\note{表中 $m\geq0$。偶数零步的三起点各有一条空走法，但最终数组计数只用正步数。将中心与两个叶子相加，偶步为 $3\cdot2^m$，奇步为 $4\cdot2^m$。两颗星再乘二，就得到 $b$ 的定义。}
+\end{frame}
+\section{行图}
+% Manuscript: Lemma 1; book row-structure
+\begin{frame}{整行只在两处产生分叉}
+固定宽度 $k+1$，整行作为 $H_k$ 的一个点。
+\[
+\begin{aligned}
+R_{02}&\longleftrightarrow\{R_{10},R_{21}\},\\
+R_{20}&\longleftrightarrow\{R_{01},R_{12}\}.
+\end{aligned}
+\]
+$R_{uv}$ 表示长度 $k+1$ 的交替行 $uvuvu\cdots$。
+\medskip
+
+若一行含 $1$，某个涉及 $1$ 的相邻对唯一决定下一行的一段；向两边的延伸也唯一。
+\note{有邻居的行，其相邻数字不同。若没有 $1$，必交替 $0,2$。否则，上端对 $01,10,12,21$ 的下端对分别被迫为 $20,02,20,02$。卡片图的上端数字唯一性使整个邻居行被迫确定。故其他点至多一个邻居。}
+\end{frame}
+% Manuscript: Lemma 1; book row-structure
+\begin{frame}{数剩下的独立边}
+\begin{bookresult}{row-structure}
+对 $k\geq1$，非孤立部分是两个 $K_{1,2}$ 与 $2b(k)-4$ 个 $K_2$。
+\end{bookresult}
+\begin{itemize}
+\item 两行数组：既是 $H_k$ 的有方向边，也是卡片图的 $k$ 步走法。
+\item 共 $4b(k)$ 条；两颗星占八条。
+\item 每条独立边有两个方向，故余下 $(4b(k)-8)/2$ 条。
+\end{itemize}
+\note{无邻居的行是孤立点。排除两颗星后所有非孤立点的度都为一，故分量只能是独立边。$k=1$ 时 $b(1)=2$，没有剩余边，边界情况成立。}
+\end{frame}
+% Manuscript: Theorem 1 proof
+\begin{frame}{现在只需相加}
+$n\geq1$ 时，孤立点没有贡献。
+\[
+\begin{aligned}
+\text{两颗星}&:\quad4b(n),\\
+\text{独立边}&:\quad2(2b(k)-4),\\
+N(n,k)&=4\bigl(b(n)+b(k)-2\bigr).
+\end{aligned}
+\]
+宽度五：$k=4$，八条独立边，$N(1,4)=24$、$T(1,4)=6$。
+\note{一条独立边，从每个端点出发都只有一条正步数走法。除以四得到主公式。公式对 $n,k$ 对称，与转置数组相符；证明也解释了四的整除性。}
+\end{frame}
+\section{推论}
+% Manuscript: Theorem 1 and §3; book five-column
+\begin{frame}{五列的精确公式}
+\begin{bookresult}{five-column}
+$a(n)=T(n,4)$，对 $m\geq0$，
+\[
+\begin{aligned}
+a(2m+1)&=2^{m+1}+4,\\
+a(2m+2)&=3\cdot2^m+4.
+\end{aligned}
+\]
+递推从 $n\geq4$ 开始；存在形式级数 $A$，其常数项为零，正次系数为 $a(n)$；每个这样的级数满足
+\[
+A(1-x)(1-2x^2)=x(6+x-11x^2).
+\]
+\end{bookresult}
+\note{该结果块只包含五列范围。递推是 $a(n)=a(n-1)+2a(n-2)-2a(n-3)$，$n\geq4$。$A$ 的正次系数为 $a(n)$。这正是所引 Lean 定理的完整范围，不能把任意宽度图分解放进这个块。}
+\end{frame}
+% Manuscript: §3, Corollary 1; book beck-peterson
+\begin{frame}{计数也能数三角形}
+\begin{bookresult}{beck-peterson}
+$u(n)=T(n,2)=b(n)+1=\mathrm{A029744}(n+1)+1$（$n\geq1$）。
+\[
+u(n)=2u(n-2)-1\quad(n\geq3).
+\]
+对 $n\geq3$，指定两边 $u(n-1),u(n-2)$，非退化整数三角形有 $u(n)$ 个。
+\end{bookresult}
+第三边从 $A-B+1$ 到 $A+B-1$，共 $2B-1$ 个。
+\note{此处 $A=u(n-1)>B=u(n-2)>0$，$n\geq3$。严格三角形不等式排除端点。原文称该数列为 $a$，这里改用 $u$ 避免与五列混淆。最小例两边四和三，第三边二到六，共五种。}
+\end{frame}
+% Manuscript: §3, Corollary 2; book diagonal
+\begin{frame}{方形网格与问题的边界}
+\begin{bookresult}{diagonal}
+对 $n\geq1$，$T(n,n)=2b(n)-2=\mathrm{A027383}(n)$。
+\end{bookresult}
+\begin{itemize}
+\item 代入 $k=n$ 即得；首项 $2,4,6,10,14,\ldots$。
+\item 数组公式不延伸到 $n=0$ 或 $k=0$。
+\item 未处理 Beck 的第二个零位置猜想，或 A209724 的最小整数／因子猜想。
+\end{itemize}
+\note{方形对角线没有索引移位。A027383 有零索引项，但这里从一开始。两个未处理的猜想是独立的 OEIS 问题，不应由已证明的公式推断它们也已解决。}
+\end{frame}
+% Manuscript: Bibliography and Lean scope
+\begin{frame}{来源与可复用的证明}
+\small
+Haobo Ma，Wenlin Zhang，第 2 版（2026）。\\
+\href{https://doi.org/10.5281/zenodo.23903301}{doi:10.5281/zenodo.23903301}，CC BY 4.0。
+\begin{itemize}
+\item R. H. Hardin：A209723、A209727 的问题与归一化。
+\item Colin Barker：奇偶公式与生成函数猜想。
+\item Andrew（2024）：四列情形的方块证明提纲。
+\item R. P. Stanley（2012），\emph{Enumerative Combinatorics 1}，§4.7：转移矩阵法。
+\end{itemize}
+\href{https://github.com/the-omega-institute/trureturing-requests/issues/222}{图分解}、\href{https://github.com/the-omega-institute/trureturing-requests/issues/223}{任意长方形及对角线}、\href{https://github.com/the-omega-institute/trureturing-requests/issues/224}{三列与三角形}：共享形式化入口。
+\note{五列的结论已有直接形式定理，一般宽度与推论有原文书面证明。三列已有三阶递推与生成函数的形式证明，可供复用。贡献任务链接同一公共队列，不重复请求已有五列证明。}
+\end{frame}
+\appendix
+% Manuscript: Section 2, equation tiles
+\begin{frame}{八种局部填法}
+\[
+\begin{aligned}
+&(0,1,2,0),\ (0,2,1,0),\\
+&(0,2,2,1),\ (1,0,0,2),\\
+&(1,2,2,0),\ (2,0,0,1),\\
+&(2,0,1,2),\ (2,1,0,2).
+\end{aligned}
+\]
+每项按 $(a,b,c,d)$ 记录方格 $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$。
+\note{直接相减验证充分性。与前面的必要性论证结合，清单完整。}
+\end{frame}
+% Manuscript: Section 3, recurrence and generating function
+\begin{frame}{递推与级数的计算}
+\[
+\begin{aligned}
+a(n+2)&=2a(n)-4 &&(n\geq1),\\
+a(n+3)-a(n+2)&=2a(n+1)-2a(n) &&(n\geq1).
+\end{aligned}
+\]
+\[
+\begin{aligned}
+B(x)&=\frac{2x+3x^2}{1-2x^2},\\
+A(x)&=B(x)+\frac{4x}{1-x}.
+\end{aligned}
+\]
+分母常数项为一，因此形式上可逆。
+\note{递推换元到目标索引至少为四。形式级数是系数恒等式，不需要解析收敛。}
+\end{frame}
+% Manuscript: exact formal scope, generated evidence ledger
+\FormalVerification
+\end{document}

@@ -1,0 +1,66 @@
+{
+  "book": "hardin-barker-a209723-edge-differences",
+  "pending_claims": [],
+  "results": {
+    "rectangular-count": {
+      "claim": "collected:hardin-barker-a209723-edge-differences:2:s1",
+      "gids": [],
+      "comparison_verdict": "special case",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Theorem 1 — rectangular count",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/223"
+      }
+    },
+    "row-structure": {
+      "claim": "collected:hardin-barker-a209723-edge-differences:2:s2",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Lemma 1 — row-graph decomposition",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/222"
+      }
+    },
+    "five-column": {
+      "claim": "collected:hardin-barker-a209723-edge-differences:2:s1",
+      "gids": [
+        "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result"
+      ],
+      "comparison_verdict": "same",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8"
+    },
+    "beck-peterson": {
+      "claim": "collected:hardin-barker-a209723-edge-differences:2:s3",
+      "gids": [],
+      "comparison_verdict": "variant",
+      "compared_public_gid": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209721EdgeDifferences.result",
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Corollary 1 — Beck–Peterson identities and triangles",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/224"
+      }
+    },
+    "diagonal": {
+      "claim": "collected:hardin-barker-a209723-edge-differences:2:s4",
+      "gids": [],
+      "comparison_verdict": "none",
+      "compared_public_gid": null,
+      "comparison_commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+      "formalization_request": {
+        "label": "Corollary 2 — square-grid diagonal",
+        "url": "https://github.com/the-omega-institute/trureturing-requests/issues/223"
+      }
+    }
+  },
+  "stage": "complete",
+  "titles": {
+    "en": "OEIS A209723: Barker's conjectures on distinct clockwise edge differences",
+    "zh": "OEIS A209723: Barker's conjectures on distinct clockwise edge differences"
+  },
+  "version": 2,
+  "work": "hardin-barker-a209723-edge-differences"
+}

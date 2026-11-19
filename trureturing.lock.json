@@ -1,0 +1,17 @@
+{
+  "schema": "trureturing-books.lock.v1",
+  "repo": "the-omega-institute/trureturing",
+  "branch": "dev",
+  "commit": "8a24ea4e79de962725aab9d9b49cc605fcc211d8",
+  "pinned_at": "2026-11-08T12:32:04Z",
+  "declarations": {
+    "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result": {
+      "module": "D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences",
+      "name": "D5.S3.Combinatorics.Graph.Pressure.HardinBarkerA209723EdgeDifferences.result",
+      "kind": "theorem",
+      "statement_id": "sha256:9aec6a35c9d7af7e3ee250e89dbd3f3f2986819bbebc9d07ffc933fe64f3eb23",
+      "line": 649,
+      "signature": "theorem result : claim"
+    }
+  }
+}

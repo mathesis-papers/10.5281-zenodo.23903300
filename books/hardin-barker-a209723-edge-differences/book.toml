@@ -1,0 +1,17 @@
+[book]
+version = "2"
+authors = ["Haobo Ma", "Wenlin Zhang"]
+license = "CC-BY-4.0"
+editions = ["zh", "en"]
+date = "2026-11-05"
+[book.title]
+zh = "OEIS A209723: Barker's conjectures on distinct clockwise edge differences"
+en = "OEIS A209723: Barker's conjectures on distinct clockwise edge differences"
+[outputs]
+html = true
+pdf = ["academic"]
+epub = true
+[mathesis]
+work = "hardin-barker-a209723-edge-differences"
+version = 2
+source_title = "OEIS A209723: Barker's conjectures on distinct clockwise edge differences"
