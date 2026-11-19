@@ -1,18 +1,24 @@
 # Sources and further work
 
-<style>pre:has(> code[class*="typst"]) { display: none; }</style>
+<section hidden="hidden">
 
 ```{=typst}
 #block(breakable: false)[
 ```
 
+</section>
+
 ## Paper and earlier work
 
 The mathematical source is Haobo Ma and Wenlin Zhang, *OEIS A209723: Barker's conjectures on distinct clockwise edge differences*, version 2 (2026), [version DOI: 10.5281/zenodo.23903301](https://doi.org/10.5281/zenodo.23903301), licensed CC BY 4.0. The [concept DOI](https://doi.org/10.5281/zenodo.23903300) groups the versions; citations here identify version 2. Manuscript Theorem 1 is stated in §1; Lemma 1 and the main proof are in §2; Corollaries 1–2 and the companion calculations are in §3.
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 - R. H. Hardin, [A209723](https://oeis.org/A209723), the five-column problem, March 12, 2012; Colin Barker's parity and generating-function conjectures, July 12, 2018.
 - R. H. Hardin, [A209727](https://oeis.org/A209727), the rectangular counting table, normalized as one quarter of the actual number of fillings.
@@ -28,9 +34,13 @@ The mathematical source is Haobo Ma and Wenlin Zhang, *OEIS A209723: Barker's co
 
 A separate [three-column Lean theorem](https://github.com/the-omega-institute/trureturing/blob/8a24ea4e79de962725aab9d9b49cc605fcc211d8/D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209721EdgeDifferences.lean#L150) proves the order-three recurrence and formal generating function at that width. It offers reusable prerequisites for the triangle consequence, but does not directly state all its conclusions.
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ## Contribute a formalization
 
@@ -40,13 +50,21 @@ The remaining work is formalization of arguments already proved in the paper. Us
 - [Rectangular count and diagonal consequence](https://github.com/the-omega-institute/trureturing-requests/issues/223): reuse the decomposition to prove the general count; obtain the diagonal by substitution in the same contribution.
 - [Beck–Peterson identities and triangle interpretation](https://github.com/the-omega-institute/trureturing-requests/issues/224): reuse the general formula at three columns, or the existing three-column formal proof, for the two-step recurrence, sequence identification and third-side count.
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
 
+</section>
+
 State the exact intended scope and branch in the relevant issue, then submit a focused PR from your contributor fork directly to [trureturing's dev branch](https://github.com/the-omega-institute/trureturing/blob/dev/docs/CONTRIBUTING.md), following existing proof admission, review and CI rules. After acceptance, compare the frozen declaration with the complete written statement before updating citations. GitHub merge does not automatically alter independent Mathesis verification records or award platform points.
 
+
+<section hidden="hidden">
 
 ```{=typst}
 #pagebreak(weak: true)
 ```
+
+</section>

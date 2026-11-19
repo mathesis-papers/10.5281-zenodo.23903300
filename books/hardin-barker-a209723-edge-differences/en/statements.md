@@ -1,7 +1,5 @@
 # Precise statements and proofs
 
-<style>pre:has(> code[class*="typst"]) { display: none; }</style>
-
 Use the manuscript's definitions. For $n,k\geq1$, $N(n,k)$ counts labelled $(n+1)\times(k+1)$ arrays over $\{0,1,2\}$. In each adjacent square $\left(\begin{smallmatrix}a&b\\c&d\end{smallmatrix}\right)$, the integers $b-a,d-b,c-d,a-c$ must be pairwise distinct. Put $T=N/4$ and define
 
 $$
@@ -13,9 +11,13 @@ $$
 
 We state the main answer first, prove the local classification, graph decomposition and count in that order, and finish with two consequences. The written proofs below expand the arguments in Haobo Ma and Wenlin Zhang's version 2 manuscript.
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ::: {.theorem #rectangular-count title="The rectangular count" mathesis="collected:hardin-barker-a209723-edge-differences:2:s1" status="written-proof" proof="pf-rectangular-count" doi="10.5281/zenodo.23903301" source="Theorem 1" request="https://github.com/the-omega-institute/trureturing-requests/issues/223"}
 For all $n,k\geq1$,
@@ -40,9 +42,13 @@ $$
 $$
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ## The eight squares
 
@@ -72,17 +78,25 @@ In particular, different neighbors of a card have different upper entries.
 
 The vertices of $H_k$ are all rows of length $k+1$; two are adjacent if they can be stacked. Interchanging the rows permutes and negates the differences, so adjacency is symmetric. A repeated row would have two zero vertical differences, ruling out loops. An array corresponds bijectively to a walk of length $n$ with specified starting vertex. Walks may repeat edges and vertices.
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ::: {.lemma #row-structure title="Decomposition of the row graph" mathesis="collected:hardin-barker-a209723-edge-differences:2:s2" status="written-proof" proof="pf-row-structure" doi="10.5281/zenodo.23903301" source="Lemma 1" request="https://github.com/the-omega-institute/trureturing-requests/issues/222"}
 For every $k\geq1$, the nonisolated part of $H_k$ is the disjoint union of two copies of $K_{1,2}$ and $2b(k)-4$ copies of $K_2$.
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ::: {.proof #pf-row-structure}
 Write $R_{uv}=uvuvu\cdots$, truncated to length $k+1$. The card graph gives
@@ -103,9 +117,13 @@ To count them, a single $K_{1,2}$ has $3\cdot2^m$ walks of length $2m$: $2^m$ fr
 Reading the same two-row array by rows gives a directed edge of $H_k$; reading it by columns gives a $k$-step walk in the card graph. This is a bijection, so $H_k$ has $4b(k)$ directed edges. Its two stars account for eight; each remaining $K_2$ accounts for two. There are $(4b(k)-8)/2=2b(k)-4$ such components. At $k=1$ this number is zero, and the argument still applies.
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ## Proof of the main formula
 
@@ -129,17 +147,25 @@ $$
 Thus $A(x)=B(x)+4x/(1-x)$. The common numerator is $(2x+3x^2)(1-x)+4x(1-2x^2)=6x+x^2-11x^3$, as asserted. Both denominator factors have constant term one and are invertible in the formal power-series ring; no analytic convergence assumption is required.
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ## Exact formal scope for five columns
 
 The following is the five-column specialization of [@rectangular-count], together with the recurrence in manuscript §3. It does not assert arbitrary-width formalization.
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ::: {.theorem #five-column title="Five-column parity, recurrence and formal series" mathesis="collected:hardin-barker-a209723-edge-differences:2:s1" lean="D5/S3/Combinatorics/Graph/Pressure/HardinBarkerA209723EdgeDifferences.result"}
 Let $a(n)=N(n,4)/4$, valued in the rationals. For every $m\geq0$,
@@ -164,9 +190,13 @@ A(1-x)(1-2x^2)=x(6+x-11x^2).
 $$
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ::: {.proof #pf-five-column}
 The parity formulas follow from $a(n)=b(n)+4$. The identity $b(n+2)=2b(n)$ gives $a(n+2)=2a(n)-4$ for $n\geq1$. Subtract consecutive instances to obtain $a(n+3)-a(n+2)=2a(n+1)-2a(n)$, which is the stated recurrence. Constructing the series by its coefficients gives existence, and the common-denominator calculation above gives its identity. The linked Lean theorem states all these clauses directly; its recurrence index $m+4$ is the same range as $n\geq4$. Although Lean defines its count for every natural input, the series constant coefficient is specified separately as zero; it is not the array count at $n=0$ divided by four.
@@ -176,9 +206,13 @@ The parity formulas follow from $a(n)=b(n)+4$. The identity $b(n+2)=2b(n)$ gives
 
 Write $u(n)=T(n,2)$ here to distinguish it from the five-column $a(n)$. Manuscript Corollary 1 calls this three-column sequence $a(n)$.
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ::: {.corollary #beck-peterson title="Three-column counts and triangles" mathesis="collected:hardin-barker-a209723-edge-differences:2:s3" status="written-proof" proof="pf-beck-peterson" doi="10.5281/zenodo.23903301" source="Corollary 1" request="https://github.com/the-omega-institute/trureturing-requests/issues/224"}
 For $n\geq1$, the three-column sequence A209721 satisfies
@@ -196,9 +230,13 @@ $$
 For $n\geq3$, $u(n)$ also counts nondegenerate integer triangles with two specified side lengths $u(n-1),u(n-2)$, meaning the number of positive integer choices for the third side.
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ::: {.proof #pf-beck-peterson}
 Set $k=2$ in [@rectangular-count]. Since $b(2)=3$, $u(n)=b(n)+1$. The defining sequence A029744 gives $b(n)=\mathrm{A029744}(n+1)$, proving Beck's first conjecture. Since $b(n)=2b(n-2)$ for $n\geq3$, we obtain $u(n)=2(u(n-2)-1)+1=2u(n-2)-1$, Peterson's recurrence.
@@ -208,9 +246,13 @@ The parity formulas make the sequence strictly increasing: $b(2m+2)-b(2m+1)=2^m>
 
 ## Square grids
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ::: {.corollary #diagonal title="The square-grid diagonal" mathesis="collected:hardin-barker-a209723-edge-differences:2:s4" status="written-proof" proof="pf-diagonal" doi="10.5281/zenodo.23903301" source="Corollary 2" request="https://github.com/the-omega-institute/trureturing-requests/issues/223"}
 For every $n\geq1$, the diagonal of A209727 satisfies
@@ -220,17 +262,25 @@ T(n,n)=2b(n)-2=\mathrm{A027383}(n).
 $$
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 ::: {.proof #pf-diagonal}
 Set $k=n$ in [@rectangular-count] to obtain $T(n,n)=2b(n)-2$. At even indices $n=2m\geq2$ this is $3\cdot2^m-2$; at odd indices $n=2m+1\geq1$ it is $2^{m+2}-2$. These are the defining parity formulas of A027383. The array diagonal starts at $n=1$ with $2,4,6,10,14,\ldots$. Although A027383 also has an index-zero term, there is no shift here and no assertion about $T(0,0)$.
 :::
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 ## Recurrences, series and growth at every width
 
@@ -243,13 +293,21 @@ T(2m+2,k)&=3\cdot2^m+C_k\qquad(m\geq0).
 \end{aligned}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
 
+</section>
+
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 Thus $T(n+2,k)=2T(n,k)-C_k$ for $n\geq1$. Subtract consecutive instances to obtain
 
@@ -263,13 +321,21 @@ n\geq4.
 \end{gathered}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
 
+</section>
+
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 At $k=1$, $C_1=0$, giving the stronger recurrence $T(n,1)=2T(n-2,1)$ for $n\geq3$. Also,
 
@@ -277,9 +343,13 @@ $$
 A_k(x)=\frac{x\bigl((C_k+2)+x-(2C_k+3)x^2\bigr)}{(1-x)(1-2x^2)}.
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 Indeed, put $A_k=B+C_kx/(1-x)$ over a common denominator: the numerator is $(2x+3x^2)(1-x)+C_kx(1-2x^2)$. Width parameters $k=2,3,4,5,6,7$ give constants $C_k=1,2,4,6,10,14$, corresponding to A209721–A209726. The first column of the counting table is $b(n)=\mathrm{A029744}(n+1)$.
 

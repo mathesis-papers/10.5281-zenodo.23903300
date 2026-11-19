@@ -1,7 +1,5 @@
 # From one square to every rectangle
 
-<style>pre:has(> code[class*="typst"]) { display: none; }</style>
-
 Fill a rectangular grid with $0,1,2$. In every adjacent $2\times2$ square, go clockwise and subtract consecutive entries. Require the four signed differences to be different. How many fillings work? Haobo Ma and Wenlin Zhang give an exact answer for every rectangle with at least two rows and two columns. The mechanism is surprisingly small: two three-vertex stars and a collection of separate edges.
 
 For $n+1$ rows and $k+1$ columns, with $n,k\geq1$, let $N(n,k)$ be the actual number of fillings and use the OEIS normalization $T(n,k)=N(n,k)/4$. Then
@@ -16,9 +14,13 @@ This reading explains version 2 of the paper. [Precise statements and proofs](st
 
 ## Subtraction has a direction
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 Start with a single square:
 
@@ -26,9 +28,13 @@ $$
 \begin{pmatrix}0&1\\2&0\end{pmatrix}.
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 Starting at the upper left and going clockwise gives
 
@@ -109,9 +115,13 @@ a(2m+2)&=3\cdot2^m+4\qquad(m\geq0).
 \end{aligned}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 The identity $b(n+2)=2b(n)$ gives $a(n+2)=2a(n)-4$ for $n\geq1$. Subtract this identity at consecutive indices to eliminate the constant and obtain Hardin's recurrence:
 
@@ -122,9 +132,13 @@ n\geq4.
 \end{gathered}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 We can also store the sequence in a formal expression $A(x)=6x+7x^2+8x^3+\cdots$: the coefficient of $x^n$ records $a(n)$. This is a generating function. Doubling every other term gives the denominator $1-2x^2$, and adding four each time gives $4x/(1-x)$. Together these yield
 

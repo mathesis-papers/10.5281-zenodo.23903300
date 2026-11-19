@@ -1,7 +1,5 @@
 # 从一个小方格，到任意长方形
 
-<style>pre:has(> code[class*="typst"]) { display: none; }</style>
-
 把 $0,1,2$ 填进长方形网格，要求每个相邻的 $2\times2$ 小方格，沿顺时针方向相减所得的四个数互不相同。这样的填法有多少？Haobo Ma 与 Wenlin Zhang 的论文给出了所有至少两行、两列的长方形的精确答案。看似会随宽度急剧复杂化的问题，最后只需要数两颗三点“星”和若干条独立的边。
 
 先把答案摆出来。若网格有 $n+1$ 行、$k+1$ 列（$n,k\geq1$），实际填法数记作 $N(n,k)$，按 OEIS 的约定记 $T(n,k)=N(n,k)/4$。则
@@ -16,9 +14,13 @@ $$
 
 ## 相减时，方向很重要
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 看这个小方格：
 
@@ -26,9 +28,13 @@ $$
 \begin{pmatrix}0&1\\2&0\end{pmatrix}.
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 从左上角出发顺时针绕一圈，依次得到
 
@@ -109,9 +115,13 @@ a(2m+2)&=3\cdot2^m+4\qquad(m\geq0).
 \end{aligned}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 #block(breakable: false)[
 ```
+
+</section>
 
 因为 $b(n+2)=2b(n)$，有 $a(n+2)=2a(n)-4$（$n\geq1$）。把相邻两条这样的等式相减，就消去了常数，得到 Hardin 的递推式
 
@@ -122,9 +132,13 @@ n\geq4.
 \end{gathered}
 $$
 
+<section hidden="hidden">
+
 ```{=typst}
 ]
 ```
+
+</section>
 
 还可以把整个数列装进一串形式符号 $A(x)=6x+7x^2+8x^3+\cdots$：$x^n$ 前的系数就是 $a(n)$。这种“系数档案”叫生成函数。两条隔项翻倍的数列对应分母 $1-2x^2$，固定加数 $4$ 对应 $4x/(1-x)$，因此
 
